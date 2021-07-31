@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.korilin.sunnyweather.R
-import com.korilin.sunnyweather.logic.dao.Place
+import com.korilin.sunnyweather.logic.model.PlaceResponse
 
-class PlaceAdapter(private val fragment: Fragment, private val placeList: List<Place>) : RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
+class PlaceAdapter(private val fragment: Fragment, private val placeList: List<PlaceResponse.Place>) : RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val placeName = view.findViewById(R.id.placeName) as TextView

@@ -63,7 +63,7 @@ class PlaceFragment : Fragment() {
         }
 
         // 为 placeLiveData 添加 observer 监听数据变化
-        viewModel.placeLiveData.observe(viewLifecycleOwner, { result ->
+        viewModel.placeLiveData.observe(viewLifecycleOwner) { result ->
             val places = result.getOrNull()
             if (places != null) {
                 binding.apply {
@@ -77,6 +77,6 @@ class PlaceFragment : Fragment() {
                 Toast.makeText(activity, "未能查询到任何地点", Toast.LENGTH_LONG).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
-        })
+        }
     }
 }

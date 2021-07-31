@@ -3,12 +3,15 @@ package com.korilin.sunnyweather.ui.place
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.korilin.sunnyweather.logic.dao.Place
-import com.korilin.sunnyweather.logic.model.Repository
+import com.korilin.sunnyweather.logic.Repository
+import com.korilin.sunnyweather.logic.model.PlaceResponse
 
 class PlaceViewModel : ViewModel() {
+    // 接收搜索参数
+    private val searchLiveData = MutableLiveData<String>()
+
     // 缓存 UI 显示的城市数据
-    val placeList = mutableListOf<Place>()
+    val placeList = mutableListOf<PlaceResponse.Place>()
 
     /**
      * 观察 [searchLiveData] 的值，当 [searchPlaces] 被调用时，
@@ -19,11 +22,8 @@ class PlaceViewModel : ViewModel() {
         Repository.searchPlaces(it)
     }
 
+
     fun searchPlaces(query: String) {
         searchLiveData.value = query
-
-    // 接收搜索参数
-    private val searchLiveData = MutableLiveData<String>()
-
     }
 }

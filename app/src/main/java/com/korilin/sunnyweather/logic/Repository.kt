@@ -1,6 +1,7 @@
-package com.korilin.sunnyweather.logic.model
+package com.korilin.sunnyweather.logic
 
 import androidx.lifecycle.liveData
+import com.korilin.sunnyweather.logic.model.PlaceResponse
 import com.korilin.sunnyweather.logic.network.SunnyWeatherNetwork
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
@@ -23,7 +24,7 @@ object Repository {
                 Result.failure(RuntimeException("custom exception::response status is ${placeResponse.status}"))
             }
         } catch (e : Exception) {
-            Result.failure(e)
+            Result.failure<List<PlaceResponse.Place>>(e)
         }
         // 通知 viewData 数据变化
         emit(result)
