@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.korilin.sunnyweather.MainActivity
 import com.korilin.sunnyweather.WeatherActivity
 import com.korilin.sunnyweather.databinding.FragmentPlaceBinding
 
@@ -38,7 +39,7 @@ class PlaceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (viewModel.isPlaceSaved()) {
+        if (activity is MainActivity && viewModel.isPlaceSaved()) {
             startActivity(with(viewModel.getSavePlace()) {
                 WeatherActivity.getStartIntent(context, location.lng, location.lat, name)
             })

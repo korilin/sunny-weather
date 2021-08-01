@@ -9,8 +9,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowInsetsController
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.korilin.sunnyweather.databinding.*
 import com.korilin.sunnyweather.logic.model.DailyResponse
@@ -27,8 +30,8 @@ const val INTENT_PARAM_PLACE_NAME = "place_name"
 
 class WeatherActivity : BaseActivity() {
 
-    private val viewModel by lazy { ViewModelProvider(this).get(WeatherViewModel::class.java) }
-    private lateinit var viewBinding: ActivityWeatherBinding
+    val viewModel by lazy { ViewModelProvider(this).get(WeatherViewModel::class.java) }
+    lateinit var viewBinding: ActivityWeatherBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,9 +56,45 @@ class WeatherActivity : BaseActivity() {
                 Toast.makeText(this, "无法成功获取天气信息", Toast.LENGTH_LONG).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
+            viewBinding.swipeRefresh.isRefreshing = false
         }
 
+        viewBinding.apply {
+            swipeRefresh.apply {
+                setColorSchemeResources(R.color.colorPrimary)
+                setOnRefreshListener {
+                    refreshWeather()
+                }
+            }
+
+            now.navBtn.setOnClickListener {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+
+            drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
+                override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                }
+
+                override fun onDrawerOpened(drawerView: View) {
+                }
+
+                override fun onDrawerClosed(drawerView: View) {
+                    // 不懂
+                    val manager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    manager.hideSoftInputFromWindow(drawerView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+                }
+
+                override fun onDrawerStateChanged(newState: Int) {
+                }
+            })
+        }
+
+        refreshWeather()
+    }
+
+    fun refreshWeather() {
         viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
+        viewBinding.swipeRefresh.isRefreshing = true
     }
 
     private fun showWeatherInfo(weather: Weather) {
