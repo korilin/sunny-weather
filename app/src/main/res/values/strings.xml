@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">SunnyWeather</string>
     <string name="input_location_hint">输入地址</string>
+    <string name="vertical_dividing">" | "</string>
+    <string name="forecast">预报</string>
+    <string name="sky_icon">skyIcon</string>
+    <string name="life_index">生活指数</string>
+    <string name="cold">感冒</string>
+    <string name="dress">穿衣</string>
+    <string name="realtime_UV">实时紫外线</string>
+    <string name="car_wash">洗车</string>
+    <string name="temperature">%1$d ℃</string>
+    <string name="aqi">空气指数 %1$d</string>
+    <string name="temperature_info">%1$d ~ %2$d ℃</string>
 </resources>
