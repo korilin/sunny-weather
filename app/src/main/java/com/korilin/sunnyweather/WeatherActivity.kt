@@ -111,7 +111,7 @@ class WeatherActivity : BaseActivity() {
         }
 
     companion object {
-        fun getStartIntent(context: Context, lng: String, lat: String, placeName: String) =
+        fun getStartIntent(context: Context?, lng: String, lat: String, placeName: String) =
             Intent(context, WeatherActivity::class.java).apply {
                 putExtra(INTENT_PARAM_LNG, lng)
                 putExtra(INTENT_PARAM_LAT, lat)

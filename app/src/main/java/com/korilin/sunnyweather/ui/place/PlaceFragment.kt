@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.korilin.sunnyweather.WeatherActivity
 import com.korilin.sunnyweather.databinding.FragmentPlaceBinding
 
 class PlaceFragment : Fragment() {
@@ -22,7 +23,6 @@ class PlaceFragment : Fragment() {
 
     private lateinit var _binding: FragmentPlaceBinding
     private val binding get() = _binding
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +37,14 @@ class PlaceFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (viewModel.isPlaceSaved()) {
+            startActivity(with(viewModel.getSavePlace()) {
+                WeatherActivity.getStartIntent(context, location.lng, location.lat, name)
+            })
+            activity?.finish()
+            return
+        }
 
         placeAdapter = PlaceAdapter(this, viewModel.placeList)
 
