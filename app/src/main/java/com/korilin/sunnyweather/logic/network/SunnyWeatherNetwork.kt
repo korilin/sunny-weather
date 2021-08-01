@@ -11,21 +11,24 @@ import kotlin.coroutines.suspendCoroutine
 
 object SunnyWeatherNetwork {
 
-    // 动态创建 PlaceService
+    // 动态创建 Service
     private val placeService = ServiceCreator.create<PlaceService>()
+    private val weatherService = ServiceCreator.create<WeatherService>()
 
-    /**
-     * 搜索城市数据，利用 [Call.await] 的 extension function 挂起当前协程等待 http 请求的响应
-     *
-     * @see Call.await
-     */
+    // 请求挂起方法
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
+    suspend fun getDailyWeather(lng:String, lat:String) = weatherService.getDailyWeather(lng, lat).await()
+    suspend fun getRealtimeWeather(lng: String, lat: String) = weatherService.getRealtimeWeather(lng, lat).await()
 
     /**
      * 这是一个 Call 的 extension function，用于将响应数据
      *
      * enqueue 是一个挂起函数，接收一个 Callback 接口对象来执行响应的回调。
      * 使用 suspendCoroutine 挂起该协程，等待响应时的回调执行 resume 来恢复该协程
+     *
+     * @see searchPlaces
+     * @see getDailyWeather
+     * @see getRealtimeWeather
      */
     private suspend fun <T> Call<T>.await(): T {
 

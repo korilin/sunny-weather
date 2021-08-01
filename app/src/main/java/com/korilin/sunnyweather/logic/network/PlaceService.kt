@@ -1,7 +1,7 @@
 package com.korilin.sunnyweather.logic.network
 
 import com.korilin.sunnyweather.SunnyWeatherApplication
-import com.korilin.sunnyweather.logic.dao.PlaceResponse
+import com.korilin.sunnyweather.logic.model.PlaceResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
