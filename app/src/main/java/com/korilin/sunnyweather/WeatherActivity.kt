@@ -25,12 +25,11 @@ const val INTENT_PARAM_LNG = "location_lng"
 const val INTENT_PARAM_LAT = "location_lat"
 const val INTENT_PARAM_PLACE_NAME = "place_name"
 
-class WeatherActivity : AppCompatActivity() {
+class WeatherActivity : BaseActivity() {
 
     private val viewModel by lazy { ViewModelProvider(this).get(WeatherViewModel::class.java) }
     private lateinit var viewBinding: ActivityWeatherBinding
 
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -110,18 +109,6 @@ class WeatherActivity : AppCompatActivity() {
             ultravioletText.text = lifeIndex.ultraviolet[0].desc
             carWashingText.text = lifeIndex.carWashing[0].desc
         }
-
-
-    @RequiresApi(Build.VERSION_CODES.R)
-    private fun windowStatusBarSetting(){
-        // 状态栏与背景处理
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
-            window.setDecorFitsSystemWindows(false)
-        else {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }
-        window.statusBarColor = Color.TRANSPARENT
-    }
 
     companion object {
         fun getStartIntent(context: Context, lng: String, lat: String, placeName: String) =

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SunnyWeather</string>
     <string name="input_location_hint">输入地址</string>
-    <string name="vertical_dividing">" | "</string>
+    <string name="vertical_dividing">|</string>
     <string name="forecast">预报</string>
     <string name="sky_icon">skyIcon</string>
     <string name="life_index">生活指数</string>

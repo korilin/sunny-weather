@@ -16,7 +16,7 @@ import com.korilin.sunnyweather.databinding.FragmentPlaceBinding
 class PlaceFragment : Fragment() {
 
     // 懒加载获得 PlaceViewModel
-    private val viewModel by lazy { ViewModelProvider(this).get(PlaceViewModel::class.java) }
+    val viewModel by lazy { ViewModelProvider(this).get(PlaceViewModel::class.java) }
 
     private lateinit var placeAdapter: PlaceAdapter
 

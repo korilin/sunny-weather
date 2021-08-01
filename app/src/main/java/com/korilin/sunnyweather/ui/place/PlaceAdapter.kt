@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.korilin.sunnyweather.R
 import com.korilin.sunnyweather.WeatherActivity
 import com.korilin.sunnyweather.logic.model.PlaceResponse
 
-class PlaceAdapter(private val fragment: Fragment, private val placeList: List<PlaceResponse.Place>) : RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
+class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: List<PlaceResponse.Place>) : RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val placeName = view.findViewById(R.id.placeName) as TextView
@@ -32,6 +31,7 @@ class PlaceAdapter(private val fragment: Fragment, private val placeList: List<P
         return ViewHolder(view).apply {
             itemView.setOnClickListener {
                 val intent = with(placeList[adapterPosition]) {
+                    fragment.viewModel.savePlace(this)
                     WeatherActivity.getStartIntent(parent.context, location.lng, location.lat, name)
                 }
                 fragment.startActivity(intent)

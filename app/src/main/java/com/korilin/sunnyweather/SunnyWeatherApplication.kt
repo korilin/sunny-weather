@@ -11,6 +11,10 @@ class SunnyWeatherApplication : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
         const val TOKEN = "w8COnLuEMupFZdps"
+
+        const val placeSaveName = "sunny_weather_place"
+
+        fun getPlaceSharePreference() = context.getSharedPreferences(placeSaveName, Context.MODE_PRIVATE)
     }
 
     override fun onCreate() {

@@ -1,6 +1,9 @@
 package com.korilin.sunnyweather.logic
 
+import android.content.Context
 import androidx.lifecycle.liveData
+import com.korilin.sunnyweather.SunnyWeatherApplication
+import com.korilin.sunnyweather.logic.dao.PlaceDao
 import com.korilin.sunnyweather.logic.model.PlaceResponse
 import com.korilin.sunnyweather.logic.model.Weather
 import com.korilin.sunnyweather.logic.network.SunnyWeatherNetwork
@@ -72,4 +75,10 @@ object Repository {
             }
         }
     }
+
+    fun savePlace(place: PlaceResponse.Place) = PlaceDao.savePlace(place)
+
+    fun getSavePlace() = PlaceDao.getSavedPlace()
+
+    fun isPlaceSave() = PlaceDao.isPlaceSaved()
 }
