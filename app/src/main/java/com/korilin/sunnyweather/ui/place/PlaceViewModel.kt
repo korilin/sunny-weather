@@ -29,7 +29,7 @@ class PlaceViewModel : ViewModel() {
 
     fun savePlace(place: PlaceResponse.Place) = Repository.savePlace(place)
 
-    fun getSavePlace() = Repository.getSavePlace()
+    fun getSavePlace(): PlaceResponse.Place = Repository.getSavePlace()
 
     fun isPlaceSaved() = Repository.isPlaceSave()
 }

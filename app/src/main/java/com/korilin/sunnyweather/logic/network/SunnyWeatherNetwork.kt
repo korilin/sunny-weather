@@ -23,7 +23,7 @@ object SunnyWeatherNetwork {
     /**
      * 这是一个 Call 的 extension function，用于将响应数据
      *
-     * enqueue 是一个挂起函数，接收一个 Callback 接口对象来执行响应的回调。
+     * enqueue 是一个异步函数，接收一个 Callback 接口对象来执行响应的回调。
      * 使用 suspendCoroutine 挂起该协程，等待响应时的回调执行 resume 来恢复该协程
      *
      * @see searchPlaces
