@@ -97,3 +97,7 @@ activity.viewModel.set(place.location) {
 
 因此在 `onViewCreated()` 方法上添加了 **@SuppressLint("NotifyDataSetChanged")** 注解来消除警告
 
+## 截图
+
+![](./0.jpg)
+![](./1.jpg)
